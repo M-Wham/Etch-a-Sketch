@@ -1,0 +1,180 @@
+/* CRT effect */
+body.crt {
+  background: #111;
+  color: #0f0;
+  font-family: monospace;
+  text-shadow: 0 0 2px #0f0, 0 0 5px #0f0;
+  position: relative;
+  overflow: hidden;
+  animation: flicker 0.15s infinite;
+  filter: contrast(1.2) brightness(1.1) saturate(1.2);
+}
+
+/* Scanlines overlay */
+body.crt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0px,
+    rgba(0, 0, 0, 0.2) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Flicker animation */
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.98;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Layout */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(24, 24, 24);
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  text-align: center;
+  color: lawngreen;
+  text-shadow: rgba(0, 255, 9, 1) 0px 0px 26px;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  height: 90vw;
+  max-width: 640px;
+  max-height: 640px;
+  border: 1px dotted lawngreen;
+  box-shadow: rgba(0, 255, 8, 0.151) 0px 0px 26px;
+}
+
+.square {
+  border: 1px solid #1c1f1b23;
+  box-sizing: border-box;
+}
+
+.colored {
+  background-color: lawngreen;
+  box-shadow: 0px 0px 26px rgba(0, 255, 8, 0.151);
+}
+
+.no-borders .square {
+  border: none;
+}
+
+/* Controls */
+.utilBox {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btnBox {
+  width: 90vw;
+  max-width: 640px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btnBox button {
+  flex: 1;
+  border-radius: 0;
+  padding: 15px;
+  background: #201e1e;
+  border: 1px dotted lawngreen;
+  color: lawngreen;
+  font-family: "Courier New", Courier, monospace;
+  cursor: pointer;
+}
+
+.btnBox button.active {
+  background: rgb(26, 37, 14);
+  font-weight: bold;
+}
+
+.gridControl {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  color: lawngreen;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  width: 90vw;
+  max-width: 640px;
+}
+
+#gridSize {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 300px;
+  height: 5px;
+  background: #201e1e;
+  outline: none;
+  border: 1px dotted lawngreen;
+  cursor: pointer;
+}
+
+#gridSize::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 20px;
+  background: lawngreen;
+  cursor: pointer;
+}
+
+#gridSize::-moz-range-thumb {
+  width: 10px;
+  height: 20px;
+  background: lawngreen;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+#gridSize::-moz-range-track {
+  background: #201e1e;
+  border: 1px dotted lawngreen;
+}
+
+.gitLink {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  text-decoration: underline;
+  font: inherit;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 100;
+  color: lawngreen;
+}
+
+.gitLink:hover {
+  text-decoration: none;
+  color: green;
+  font-weight: bolder;
+}
